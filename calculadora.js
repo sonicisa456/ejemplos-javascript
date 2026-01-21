@@ -1,14 +1,33 @@
 //alert("Calculadora JavaScript");
 
-function Mostrar() {
-    let numero1 = document.getElementById("numero1").value;
-    let numero2 = document.getElementById("numero2").value;
+function Mostrar(e) {
+    let numero1 = parseInt(document.getElementById("numero1").value);
+    let numero2 = parseInt(document.getElementById("numero2").value);
 
     let resultado = 0; //variable para almacenar el resultado
-    resultado = parseFloat(numero1) + parseFloat(numero2);
+    let operacion = e.target.id; //capturar el id del botón que se presionó
 
-    let objResultado = document.getElementById("resultado"); //seleccionar el elemento donde se mostrará el resultado
-    objResultado.innerHTML = resultado; //innerHTML permite insertar contenido HTML dentro de un elemento
+    if (operacion == "suma"){
+        resultado = numero1 + numero2;
+    }
+    else if (operacion == "resta"){
+        resultado = numero1 - numero2;
+    }
+    else if (operacion == "multiplica"){
+        resultado = numero1 * numero2;
+    }
+    else if(operacion == "divide"){
+        resultado = numero1 / numero2;
+    }
+    else{
+        alert("Operacion en progreso...");
+    }
+
+    let result = document.getElementById("resultado"); //seleccionar el elemento donde se mostrará el resultado
+    result.innerHTML = resultado; //innerHTML permite insertar contenido HTML dentro de un elemento
 
     
 }
+//
+let butones = document.getElementById("btns");
+butones.addEventListener("click", Mostrar);
